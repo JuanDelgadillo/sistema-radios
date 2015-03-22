@@ -45,17 +45,30 @@ include "config/conection.php";
                 <ul class="nav navbar-nav pull-right">
                     <li class="active"><a href="./">Inicio</a></li>
                     <?php if(isset($_SESSION['user'])){ ?>
-                    <li><a href="#">Registro del personal</a></li>
-                    <li><a href="#">Registro de radios</a></li>
-                    <!-- <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">More Pages <b class="caret"></b></a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Personal <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="procesos/salir.php">Cerrar sesión</a></li>
-                            <li><a href="sidebar-right.html">Right Sidebar</a></li>
+                            <li><a href="modulos/registro_personal.php">Nueva persona</a></li>
+                            <li><a href="">Ver personal registrado</a></li>
                         </ul>
-                    </li> -->
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Radios <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="">Nuevo radio</a></li>
+                            <li><a href="">Ver radios registrados</a></li>
+                        </ul>
+                    </li>
+                    <!-- <li><a href="#">Registro de radios</a></li> -->
+                    <!-- <li><a href="modulos/registro_personal.php">Registro del personal</a></li>  -->
                     <li><a href="#">Consulta</a></li>
-                    <li><a href="#">Gestión de usuarios</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestión de usuarios <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="">Ver usuarios registrados</a></li>
+                        </ul>
+                    </li>
+                    <!-- <li><a href="#">Gestión de usuarios</a></li> -->
                     <!-- <li><a class="btn" href="signin.html">SIGN IN / SIGN UP</a></li> -->
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=$_SESSION['user']?><b class="caret"></b></a>
@@ -139,7 +152,7 @@ include "config/conection.php";
             
             <div class="row">
                 <div class="col-md-3 col-sm-6 highlight">
-                    <div class="h-caption"><h4><i class="fa fa-users fa-5"></i>Registro del personal</h4></div>
+                    <div class="h-caption"><h4><i class="fa fa-users fa-5"></i><a href="modulos/registro_personal.php">Registro del personal</a></h4></div>
                     <div class="h-body text-center">
                         <p>Módulo que permite registrar el personal de la estación de policia</p>
                     </div>
@@ -181,7 +194,7 @@ include "config/conection.php";
                             <p class="simplenav">
                                 <b><a href="./">Inicio</a></b> 
                                 <?php if(isset($_SESSION['user'])){ ?> |
-                                <a href="#">Registro del personal</a> |
+                                <a href="modulos/registro_personal.php">Registro del personal</a> |
                                 <a href="#">Registro de radios</a> |
                                 <a href="#">Consulta</a> |
                                 <a href="#">Gestión de usuarios</a> |
