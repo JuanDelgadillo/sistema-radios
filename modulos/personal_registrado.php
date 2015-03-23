@@ -94,7 +94,7 @@ table tr td {
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestión de usuarios <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="">Ver usuarios registrados</a></li>
+                            <li><a href="usuarios_registrados.php">Ver usuarios registrados</a></li>
                         </ul>
                     </li>
                     <!-- <li><a class="btn" href="signin.html">SIGN IN / SIGN UP</a></li> -->
@@ -159,7 +159,7 @@ table tr td {
                             <td style="text-align:center;"><?=$row['jerarquia']?></td>
                             <td style="text-align:center;"><?=$row['promocion']?></td>
                             <td style="text-align:center;"><?=$row['direccion']?></td>
-                            <td style="text-align:center;"><a href="">Actualizar</a> - <a href="">Eliminar</a></td>
+                            <td style="text-align:center;"><a href="registro_personal.php?cedula=<?=$row['cedula']?>">Actualizar</a> - <a href="../procesos/delete.php?category=persona&cedula=<?=$row['cedula']?>">Eliminar</a></td>
                           </tr>
                          <?php } ?>
                         </table>
@@ -195,7 +195,7 @@ table tr td {
                                 <a href="registro_personal.php">Registro del personal</a> |
                                 <a href="registro_radios.php">Registro de radios</a> |
                                 <a href="#">Consulta</a> |
-                                <a href="#">Gestión de usuarios</a> |
+                                <a href="usuarios_registrados.php">Gestión de usuarios</a> |
                                 <a href="../procesos/salir.php">Cerrar sesión</a>
                                 <?php } ?>
                             </p>

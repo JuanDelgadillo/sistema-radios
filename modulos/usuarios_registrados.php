@@ -83,18 +83,18 @@ table tr td {
                             <li><a href="personal_registrado.php">Ver personal registrado</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown active">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Radios <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="registro_radios.php">Nuevo radio</a></li>
-                            <li class="active"><a href="radios_registrados.php">Ver radios registrados</a></li>
+                            <li><a href="radios_registrados.php">Ver radios registrados</a></li>
                         </ul>
                     </li>
                     <li><a href="#">Consulta</a></li>
-                    <li class="dropdown">
+                    <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestión de usuarios <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="">Ver usuarios registrados</a></li>
+                            <li class="active"><a href="">Ver usuarios registrados</a></li>
                         </ul>
                     </li>
                     <!-- <li><a class="btn" href="signin.html">SIGN IN / SIGN UP</a></li> -->
@@ -118,7 +118,7 @@ table tr td {
 
         <ol class="breadcrumb">
             <li><a href="../">Inicio</a></li>
-            <li class="active">Radios registrados</li>
+            <li class="active">Usuarios registrados</li>
         </ol>
 
         <div class="row">
@@ -126,55 +126,31 @@ table tr td {
             <!-- Article main content -->
             <article class="col-sm-9 maincontent">
                 <header class="page-header">
-                    <h1 class="page-title">Radios registrados</h1>
+                    <h1 class="page-title">Usuarios registrados</h1>
                 </header>
                     <div id="auditoria">
-                        <table style="width:2800px; margin-top:0;" >
+                        <table style="width:1800px; margin-top:0;" >
                           <tr>
-                            <th style="text-align:center;">IDentificador (ID)</th>
-                            <th style="text-align:center;">Activo fijo</th>
-                            <th style="text-align:center;">Serial</th>
-                            <th style="text-align:center;">Estado</th>
-                            <th style="text-align:center;">Módelo</th>
-                            <th style="text-align:center;">Observación</th>
-                            <th style="text-align:center;">Cedula - Ultima asignacion</th>
-                            <th style="text-align:center;">Fecha - Ultima asignacion</th>
-                            <th style="text-align:center;">Ultima asignacion</th>
-                            <th style="text-align:center;">Cedula - Penultima asignacion</th>
-                            <th style="text-align:center;">Fecha - Penultima asignacion</th>
-                            <th style="text-align:center;">Penultima asignacion</th>
-                            <th style="text-align:center;">Cedula - Antepenultima asignacion</th>
-                            <th style="text-align:center;">Fecha - Antepenultima asignacion</th>
-                            <th style="text-align:center;">Antepenultima asignacion</th>
+                            <th style="text-align:center;">Cédula</th>
+                            <th style="text-align:center;">Nombre de usuario</th>
+                            <th style="text-align:center;">Contraseña</th>
+                            <th style="text-align:center;">Privilegio</th>
                             <th style="text-align:center;">Operaciones</th>
                           </tr>
                           <?php
 
-                          $radios = mysql_query("SELECT * FROM radios ");
+                          $users = mysql_query("SELECT * FROM users ");
 
-                          while ($row = mysql_fetch_assoc($radios))
+                          while ($row = mysql_fetch_assoc($users))
                           {
-                            $ultima_asignacion = mysql_fetch_assoc(mysql_query("SELECT * FROM ultima_asignacion_radio WHERE id_radio = '".$row['id_radio']."' "));
-                            $penultima_asignacion = mysql_fetch_assoc(mysql_query("SELECT * FROM penultima_asignacion_radio WHERE id_radio = '".$row['id_radio']."' "));
-                            $antepenultima_asignacion = mysql_fetch_assoc(mysql_query("SELECT * FROM antepenultima_asignacion_radio WHERE id_radio = '".$row['id_radio']."' "));
+                            $privileges = ['1'=>'Administrador','2'=>'Invitado'];
                           ?>
                           <tr>
-                            <td style="text-align:center;"><?=$row['radio_id']?></td>
-                            <td style="text-align:center;"><?=$row['activo_fijo']?></td>
-                            <td style="text-align:center;"><?=$row['serial_radio']?></td>
-                            <td style="text-align:center;"><?=$row['estado_radio']?></td>
-                            <td style="text-align:center;"><?=$row['modelo_radio']?></td>
-                            <td style="text-align:center;"><?=$row['observacion']?></td>
-                            <td style="text-align:center;"><?=$ultima_asignacion['cedula']?></td>
-                            <td style="text-align:center;"><?=$ultima_asignacion['fecha_ultima_asignacion']?></td>
-                            <td style="text-align:center;"><?=$ultima_asignacion['ultima_asignacion']?></td>
-                            <td style="text-align:center;"><?=$penultima_asignacion['cedula']?></td>
-                            <td style="text-align:center;"><?=$penultima_asignacion['fecha_penultima_asignacion']?></td>
-                            <td style="text-align:center;"><?=$penultima_asignacion['penultima_asignacion']?></td>
-                            <td style="text-align:center;"><?=$antepenultima_asignacion['cedula']?></td>
-                            <td style="text-align:center;"><?=$antepenultima_asignacion['fecha_antepenultima_asignacion']?></td>
-                            <td style="text-align:center;"><?=$antepenultima_asignacion['antepenultima_asignacion']?></td>
-                            <td style="text-align:center;"><a href="">Actualizar</a> - <a href="">Eliminar</a></td>
+                            <td style="text-align:center;"><?=$row['cedula']?></td>
+                            <td style="text-align:center;"><?=$row['user']?></td>
+                            <td style="text-align:center;"><?=$row['password']?></td>
+                            <td style="text-align:center;"><?=$privileges[$row['rol']]?></td>
+                            <td style="text-align:center;"><?php if($row['cedula'] != 00000000){ ?><a href="">Actualizar</a> - <a href="">Eliminar</a><?php } ?></td>
                           </tr>
                          <?php } ?>
                         </table>
@@ -210,7 +186,7 @@ table tr td {
                                 <a href="registro_personal.php">Registro del personal</a> |
                                 <a href="registro_radios.php">Registro de radios</a> |
                                 <a href="#">Consulta</a> |
-                                <a href="#">Gestión de usuarios</a> |
+                                <a href="usuarios_registrados.php">Gestión de usuarios</a> |
                                 <a href="../procesos/salir.php">Cerrar sesión</a>
                                 <?php } ?>
                             </p>
