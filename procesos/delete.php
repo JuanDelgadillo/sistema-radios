@@ -20,16 +20,18 @@ if(isset($category))
             $delete_persona = mysql_query("DELETE FROM persona WHERE cedula = '$cedula' ");
             $_SESSION['menssage'] = "La persona ha sido eliminada satisfactoriamente.";
             header("Location:../modulos/personal_registrado.php");
+            die();
         }
         else
         {
             $_SESSION['menssage'] = "La persona no se puede eliminar ya que posee un radio asignado en el historico del sistema.";
-            header("Location:../modulos/personal_registrado.php");   
+            header("Location:../modulos/personal_registrado.php");
+            die();   
         }
     }
     elseif($category == "radio")
     {
-        
+
     }
 }
 else

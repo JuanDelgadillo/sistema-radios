@@ -114,11 +114,11 @@ include "config/conection.php";
                             <form method="POST" action="procesos/login.php">
                                 <div class="top-margin">
                                     <label>Nombre de usuario <span class="text-danger">*</span></label>
-                                    <input type="text" name="user" class="form-control">
+                                    <input type="text" name="user" class="form-control" required>
                                 </div>
                                 <div class="top-margin">
                                     <label>Contraseña <span class="text-danger">*</span></label>
-                                    <input type="password" name="contrasena" class="form-control">
+                                    <input type="password" name="contrasena" class="form-control" required>
                                 </div>
 
                                 <hr>

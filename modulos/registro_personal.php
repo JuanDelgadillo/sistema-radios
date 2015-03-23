@@ -128,6 +128,8 @@ else
                     <h1 class="page-title"><?=$title?></h1>
                 </header>
                     <form method="POST" action="<?=$form?>">
+                        <input type="hidden" value="<?=$cedula?>" name="cedula_get">
+                        <input type="hidden" value="persona" name="category">
                         <div class="row">
                             <div class="col-sm-4">
                                 <span>Cédula</span>
