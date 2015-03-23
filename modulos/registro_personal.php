@@ -49,14 +49,14 @@ include "../config/conection.php";
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Personal <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li class="active"><a href="">Nueva persona</a></li>
-                            <li><a href="">Ver personal registrado</a></li>
+                            <li><a href="personal_registrado.php">Ver personal registrado</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Radios <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="">Nuevo radio</a></li>
-                            <li><a href="">Ver radios registrados</a></li>
+                            <li><a href="registro_radios.php">Nuevo radio</a></li>
+                            <li><a href="radios_registrados.php">Ver radios registrados</a></li>
                         </ul>
                     </li>
                     <li><a href="#">Consulta</a></li>
@@ -309,7 +309,7 @@ include "../config/conection.php";
                                 <b><a href="../">Inicio</a></b> 
                                 <?php if(isset($_SESSION['user'])){ ?> |
                                 <a href="registro_personal.php">Registro del personal</a> |
-                                <a href="#">Registro de radios</a> |
+                                <a href="registro_radios.php">Registro de radios</a> |
                                 <a href="#">Consulta</a> |
                                 <a href="#">Gestión de usuarios</a> |
                                 <a href="../procesos/salir.php">Cerrar sesión</a>

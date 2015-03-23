@@ -18,6 +18,10 @@ if(isset($aceptar))
         $password = base64_encode($cedula);
 
         $data_user = mysql_query("INSERT INTO users (cedula, user, password, rol) VALUES ('$cedula','$cedula','$password', 2) ");
+
+        $_SESSION['menssage'] = "La persona ha sido registrada satisfactoriamente.";
+        header("Location:../modulos/registro_personal.php");
+        die();
     }
     else
     {

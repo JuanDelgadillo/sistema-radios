@@ -49,14 +49,14 @@ include "config/conection.php";
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Personal <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="modulos/registro_personal.php">Nueva persona</a></li>
-                            <li><a href="">Ver personal registrado</a></li>
+                            <li><a href="modulos/personal_registrado.php">Ver personal registrado</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Radios <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="">Nuevo radio</a></li>
-                            <li><a href="">Ver radios registrados</a></li>
+                            <li><a href="modulos/registro_radios.php">Nuevo radio</a></li>
+                            <li><a href="modulos/radios_registrados.php">Ver radios registrados</a></li>
                         </ul>
                     </li>
                     <!-- <li><a href="#">Registro de radios</a></li> -->
@@ -65,7 +65,7 @@ include "config/conection.php";
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestión de usuarios <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="">Ver usuarios registrados</a></li>
+                            <li><a href="modulos/usuarios_registrados.php">Ver usuarios registrados</a></li>
                         </ul>
                     </li>
                     <!-- <li><a href="#">Gestión de usuarios</a></li> -->
@@ -158,19 +158,19 @@ include "config/conection.php";
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 highlight">
-                    <div class="h-caption"><h4><i class="fa fa-phone fa-5"></i>Registro de radios</h4></div>
+                    <div class="h-caption"><h4><i class="fa fa-phone fa-5"></i><a href="modulos/registro_radios.php">Registro de radios</a></h4></div>
                     <div class="h-body text-center">
                         <p>Módulo que permite registrar los radios de la estación policial.</p>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 highlight">
-                    <div class="h-caption"><h4><i class="fa fa-search fa-5"></i>Consulta</h4></div>
+                    <div class="h-caption"><h4><i class="fa fa-search fa-5"></i><a href="#">Consulta</a></h4></div>
                     <div class="h-body text-center">
                         <p>Módulo que permite consultar los registros internos de la base de datos del sistema.</p>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 highlight">
-                    <div class="h-caption"><h4><i class="fa fa-users fa-5"></i>Gestión de usuarios</h4></div>
+                    <div class="h-caption"><h4><i class="fa fa-users fa-5"></i><a href="modulos/usuarios_registrados.php">Gestión de usuarios</a></h4></div>
                     <div class="h-body text-center">
                         <p>Módulo que permite gestionar los usuarios que administran y tienen acceso al sistema de radios.</p>
                     </div>
@@ -195,9 +195,9 @@ include "config/conection.php";
                                 <b><a href="./">Inicio</a></b> 
                                 <?php if(isset($_SESSION['user'])){ ?> |
                                 <a href="modulos/registro_personal.php">Registro del personal</a> |
-                                <a href="#">Registro de radios</a> |
+                                <a href="modulos/registro_radios.php">Registro de radios</a> |
                                 <a href="#">Consulta</a> |
-                                <a href="#">Gestión de usuarios</a> |
+                                <a href="modulos/usuarios_registrados.php">Gestión de usuarios</a> |
                                 <a href="procesos/salir.php">Cerrar sesión</a>
                                 <?php } ?>
                             </p>
