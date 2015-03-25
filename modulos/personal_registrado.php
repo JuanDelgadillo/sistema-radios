@@ -63,6 +63,16 @@ table tr td {
 }
 
   </style>
+
+  <script>
+
+  window.addEventListener("load",function(){
+    exportarExcel.addEventListener('click',function(){
+        window.location="../procesos/exportar.php?category=personas";
+    },false);
+  },false);
+
+  </script>
 </head>
 
 <body>

@@ -62,6 +62,15 @@ table tr td {
 }
 
   </style>
+  <script>
+
+  window.addEventListener("load",function(){
+    exportarExcel.addEventListener('click',function(){
+        window.location="../procesos/exportar.php?category=users";
+    },false);
+  },false);
+
+  </script>
 </head>
 
 <body>
@@ -143,10 +152,10 @@ table tr td {
                           <?php
 
                           $users = mysql_query("SELECT * FROM users ");
+                          $privileges = ['1'=>'Administrador','2'=>'Invitado'];
 
                           while ($row = mysql_fetch_assoc($users))
                           {
-                            $privileges = ['1'=>'Administrador','2'=>'Invitado'];
                           ?>
                           <tr>
                             <td style="text-align:center;"><?=$row['cedula']?></td>
