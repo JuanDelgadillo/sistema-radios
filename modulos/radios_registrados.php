@@ -174,7 +174,7 @@ table tr td {
                             <td style="text-align:center;"><?=$antepenultima_asignacion['cedula']?></td>
                             <td style="text-align:center;"><?=$antepenultima_asignacion['fecha_antepenultima_asignacion']?></td>
                             <td style="text-align:center;"><?=$antepenultima_asignacion['antepenultima_asignacion']?></td>
-                            <td style="text-align:center;"><a href="">Actualizar</a> - <a href="">Eliminar</a></td>
+                            <td style="text-align:center;"><a href="registro_radios.php?idRadio=<?=$row['id_radio']?>">Actualizar</a> - <a href="../procesos/delete.php?category=radio&idRadio=<?=$row['id_radio']?>">Eliminar</a></td>
                           </tr>
                          <?php } ?>
                         </table>

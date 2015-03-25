@@ -28,12 +28,14 @@ if(isset($category))
             $_SESSION['menssage'] = "La información de la persona se actualizo satisfactoriamente.";
             header("Location:../modulos/personal_registrado.php");
             die(); 
-            var_dump($_REQUEST);
        }
     }
     elseif($category == "radio")
     {
-        
+      $update_radio = mysql_query("UPDATE radios SET radio_id = '$identificador_radio', activo_fijo = '$activo_fijo', serial_radio = '$serial', estado_radio = '$estado', modelo_radio = '$modelo', observacion = '$observacion' WHERE id_radio = '$idRadio' ");
+      $_SESSION['menssage'] = "La información del radio se actualizo satisfactoriamente.";
+      header("Location:../modulos/radios_registrados.php");
+      //var_dump($_REQUEST);
     }
 }
 else

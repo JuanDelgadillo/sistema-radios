@@ -150,7 +150,7 @@ table tr td {
                             <td style="text-align:center;"><?=$row['user']?></td>
                             <td style="text-align:center;"><?=$row['password']?></td>
                             <td style="text-align:center;"><?=$privileges[$row['rol']]?></td>
-                            <td style="text-align:center;"><?php if($row['cedula'] != 00000000){ ?><a href="">Actualizar</a> - <a href="">Eliminar</a><?php } ?></td>
+                            <td style="text-align:center;"><?php if($row['cedula'] != 00000000){ ?><a href="user.php?cedula=<?=$row['cedula']?>">Actualizar</a> - <a href="../procesos/delete.php?category=user&cedula=<?=$row['cedula']?>">Eliminar</a><?php } ?></td>
                           </tr>
                          <?php } ?>
                         </table>

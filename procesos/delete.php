@@ -8,7 +8,6 @@ extract($_REQUEST);
 
 if(isset($category))
 {
-    var_dump($_REQUEST);
     if($category == "persona")
     {
         $verificar_persona_ultima_asignacion = mysql_query("SELECT * FROM ultima_asignacion_radio WHERE cedula = '$cedula' ");
@@ -31,7 +30,14 @@ if(isset($category))
     }
     elseif($category == "radio")
     {
-
+        $delete_radio = mysql_query("DELETE FROM radios WHERE id_radio = '$idRadio' ");
+        $_SESSION['menssage'] = "El radio ha sido eliminado satisfactoriamente";
+        header("Location:../modulos/radios_registrados.php");
+    }
+    elseif($category == "user")
+    {
+        var_dump($_REQUEST);
+        
     }
 }
 else

@@ -3,6 +3,31 @@
 session_start();
 
 include "../config/conection.php";
+extract($_REQUEST);
+
+if(isset($idRadio))
+{
+    $radio = mysql_fetch_assoc(mysql_query("SELECT * FROM radios WHERE id_radio = '$idRadio' "));
+    $form = "../procesos/update.php";
+    $title = "Actualizar información del radio";
+    $radio_id = $radio['radio_id'];
+    $activo_fijo = $radio['activo_fijo'];
+    $serial_radio = $radio['serial_radio'];
+    $estado_radio = $radio['estado_radio'];
+    $modelo_radio = $radio['modelo_radio'];
+    $observacion = $radio['observacion'];
+}
+else
+{
+    $form = "../procesos/registro_radio.php";
+    $title = "Registro de radios";
+    $radio_id = "";
+    $activo_fijo = "";
+    $serial_radio = "";
+    $estado_radio = "";
+    $modelo_radio = "";
+    $observacion = "";
+}
 
 ?>
 <!DOCTYPE html>
@@ -87,7 +112,7 @@ include "../config/conection.php";
 
         <ol class="breadcrumb">
             <li><a href="../">Inicio</a></li>
-            <li class="active">Registro de radios</li>
+            <li class="active"><?=$title?></li>
         </ol>
 
         <div class="row">
@@ -95,21 +120,25 @@ include "../config/conection.php";
             <!-- Article main content -->
             <article class="col-sm-9 maincontent">
                 <header class="page-header">
-                    <h1 class="page-title">Registro de radios</h1>
+                    <h1 class="page-title"><?=$title?></h1>
                 </header>
-                    <form method="POST" action="../procesos/registro_radio.php">
+                    <form method="POST" action="<?=$form?>">
+                        <?php if(isset($idRadio)){ ?>
+                        <input type="hidden" name="idRadio" value="<?=$idRadio?>">
+                        <input type="hidden" value="radio" name="category">
+                        <?php } ?>
                         <div class="row">
                             <div class="col-sm-4">
                                 <span>IDentificador (ID)</span>
-                                <input class="form-control" type="text" name="identificador_radio" placeholder="ID del radio">
+                                <input class="form-control" type="text" value="<?=$radio_id?>" name="identificador_radio" placeholder="ID del radio">
                             </div>
                             <div class="col-sm-4">
                                 <span>Activo fijo</span>
-                                <input class="form-control" type="text" name="activo_fijo" placeholder="Activo fijo">
+                                <input class="form-control" type="text" value="<?=$activo_fijo?>" name="activo_fijo" placeholder="Activo fijo">
                             </div>
                             <div class="col-sm-4">
                                 <span>Serial</span>
-                                <input class="form-control" type="text" name="serial" placeholder="Serial">
+                                <input class="form-control" type="text" value="<?=$serial_radio?>" name="serial" placeholder="Serial">
                             </div>
                         </div>
                         <br>
@@ -118,26 +147,26 @@ include "../config/conection.php";
                                 <span>Estado</span>
                                 <select name="estado" class="form-control" required>
                                     <option value="">- Seleccione -</option>
-                                    <option value="APAGADO">APAGADO</option>
-                                    <option value="EXTRAVIADO">EXTRAVIADO</option>
-                                    <option value="OPERATIVO">OPERATIVO</option>
-                                    <option value="PARA DESINCORPORAR">PARA DESINCORPORAR</option>
-                                    <option value="REPROGRAMAR">REPROGRAMAR</option>
-                                    <option value="REVISION">REVISION</option>
-                                    <option value="SIN INFORMACION">SIN INFORMACION</option>
-                                    <option value="VERIFICAR">VERIFICAR</option>
+                                    <option <?php if($estado_radio == "APAGADO") echo "SELECTED"; ?> value="APAGADO">APAGADO</option>
+                                    <option <?php if($estado_radio == "EXTRAVIADO") echo "SELECTED"; ?> value="EXTRAVIADO">EXTRAVIADO</option>
+                                    <option <?php if($estado_radio == "OPERATIVO") echo "SELECTED"; ?> value="OPERATIVO">OPERATIVO</option>
+                                    <option <?php if($estado_radio == "PARA DESINCORPORAR") echo "SELECTED"; ?> value="PARA DESINCORPORAR">PARA DESINCORPORAR</option>
+                                    <option <?php if($estado_radio == "REPROGRAMAR") echo "SELECTED"; ?> value="REPROGRAMAR">REPROGRAMAR</option>
+                                    <option <?php if($estado_radio == "REVISION") echo "SELECTED"; ?> value="REVISION">REVISION</option>
+                                    <option <?php if($estado_radio == "SIN INFORMACION") echo "SELECTED"; ?> value="SIN INFORMACION">SIN INFORMACION</option>
+                                    <option <?php if($estado_radio == "VERIFICAR") echo "SELECTED"; ?> value="VERIFICAR">VERIFICAR</option>
                                 </select>
                             </div>
                             <div class="col-sm-4">
                                 <span>Módelo</span>
-                                <input class="form-control" type="text" name="modelo" placeholder="Módelo">
+                                <input class="form-control" type="text" value="<?=$modelo_radio?>" name="modelo" placeholder="Módelo">
                             </div>
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-sm-12">
                                 <span>Observación</span>
-                                <textarea style="resize:none;" name="observacion" placeholder="Escribe la observación aquí" class="form-control" rows="5"></textarea>
+                                <textarea style="resize:none;" name="observacion" placeholder="Escribe la observación aquí" class="form-control" rows="5"><?=$observacion?></textarea>
                             </div>
                         </div>
                         <br><br>
