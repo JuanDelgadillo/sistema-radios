@@ -35,7 +35,26 @@ if(isset($category))
       $update_radio = mysql_query("UPDATE radios SET radio_id = '$identificador_radio', activo_fijo = '$activo_fijo', serial_radio = '$serial', estado_radio = '$estado', modelo_radio = '$modelo', observacion = '$observacion' WHERE id_radio = '$idRadio' ");
       $_SESSION['menssage'] = "La información del radio se actualizo satisfactoriamente.";
       header("Location:../modulos/radios_registrados.php");
-      //var_dump($_REQUEST);
+    }
+    elseif($category == "user")
+    {
+      $verificar_usuario = mysql_query("SELECT * FROM users WHERE cedula != '$cedula' AND user = '$user' ");
+      $password = base64_encode($password);
+      if(mysql_num_rows($verificar_usuario) == 0)
+      {
+        $update_user = mysql_query("UPDATE users SET user = '$user', password = '$password', rol = '$privilegio' WHERE cedula = '$cedula' ");
+        $_SESSION['menssage'] = "La información del usuario se actualizo satisfactoriamente.";
+        header("Location:../modulos/usuarios_registrados.php");
+        die();
+      }
+      else
+      {
+        $_SESSION['menssage'] = "El nombre de usuario $user ya se encuentra registrado en el sistema.";
+        header("Location:../modulos/user.php?cedula=".$cedula);
+        die();
+      }
+
+      var_dump($_REQUEST);
     }
 }
 else

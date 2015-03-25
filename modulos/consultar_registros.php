@@ -57,7 +57,6 @@ table tr td {
         background-color: #EEE;
         margin:0 auto;
         }
-
 .btn {
     padding: 10px 10px;
 }
@@ -87,18 +86,18 @@ table tr td {
                             <li><a href="personal_registrado.php">Ver personal registrado</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown active">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Radios <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="registro_radios.php">Nuevo radio</a></li>
-                            <li class="active"><a href="radios_registrados.php">Ver radios registrados</a></li>
+                            <li><a href="radios_registrados.php">Ver radios registrados</a></li>
                         </ul>
                     </li>
-                    <li><a href="consultar_registros.php">Consulta</a></li>
+                    <li class="active"><a href="#">Consulta</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestión de usuarios <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="usuarios_registrados.php">Ver usuarios registrados</a></li>
+                            <li class="active"><a href="">Ver usuarios registrados</a></li>
                         </ul>
                     </li>
                     <!-- <li><a class="btn" href="signin.html">SIGN IN / SIGN UP</a></li> -->
@@ -122,7 +121,7 @@ table tr td {
 
         <ol class="breadcrumb">
             <li><a href="../">Inicio</a></li>
-            <li class="active">Radios registrados</li>
+            <li class="active">Consulta</li>
         </ol>
 
         <div class="row">
@@ -130,57 +129,34 @@ table tr td {
             <!-- Article main content -->
             <article class="col-sm-9 maincontent">
                 <header class="page-header">
-                    <h1 class="page-title">Radios registrados</h1>
+                    <h1 class="page-title">Consultar registros</h1>
                 </header>
+                <div class="row">
+                    <form action="" method="POST">
+                            <div class="col-sm-4">
+                                <span>Categoría a consultar</span>
+                                <select name="category" class="form-control" required>
+                                    <option value="">- Seleccione -</option>
+                                    <option value="Persona">Persona</option>
+                                    <option value="Radio">Radio</option>
+                                    <option value="Asignaciones de radio">Asignaciones de radio</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-4">
+                                <span>Dato a consultar</span>
+                                <input class="form-control" type="text" name="criterio" placeholder="Dato a consultar">
+                            </div>
+                            <div class="col-sm-4"><br>
+                                <input class="btn btn-action" name="consultar" type="submit" value="Consultar">
+                            </div>
+                    </form>
+                        </div>
+                        <br>
                     <div id="auditoria">
-                        <table style="width:2800px; margin-top:0;" >
+                        <table style="width:100%; margin-top:0;" >
                           <tr>
-                            <th style="text-align:center;">IDentificador (ID)</th>
-                            <th style="text-align:center;">Activo fijo</th>
-                            <th style="text-align:center;">Serial</th>
-                            <th style="text-align:center;">Estado</th>
-                            <th style="text-align:center;">Módelo</th>
-                            <th style="text-align:center;">Observación</th>
-                            <th style="text-align:center;">Cedula - Ultima asignacion</th>
-                            <th style="text-align:center;">Fecha - Ultima asignacion</th>
-                            <th style="text-align:center;">Ultima asignacion</th>
-                            <th style="text-align:center;">Cedula - Penultima asignacion</th>
-                            <th style="text-align:center;">Fecha - Penultima asignacion</th>
-                            <th style="text-align:center;">Penultima asignacion</th>
-                            <th style="text-align:center;">Cedula - Antepenultima asignacion</th>
-                            <th style="text-align:center;">Fecha - Antepenultima asignacion</th>
-                            <th style="text-align:center;">Antepenultima asignacion</th>
-                            <th style="text-align:center;">Operaciones</th>
+                            <th style="text-align:center;">Resultado</th>
                           </tr>
-                          <?php
-
-                          $radios = mysql_query("SELECT * FROM radios ");
-
-                          while ($row = mysql_fetch_assoc($radios))
-                          {
-                            $ultima_asignacion = mysql_fetch_assoc(mysql_query("SELECT * FROM ultima_asignacion_radio WHERE id_radio = '".$row['id_radio']."' "));
-                            $penultima_asignacion = mysql_fetch_assoc(mysql_query("SELECT * FROM penultima_asignacion_radio WHERE id_radio = '".$row['id_radio']."' "));
-                            $antepenultima_asignacion = mysql_fetch_assoc(mysql_query("SELECT * FROM antepenultima_asignacion_radio WHERE id_radio = '".$row['id_radio']."' "));
-                          ?>
-                          <tr>
-                            <td style="text-align:center;"><?=$row['radio_id']?></td>
-                            <td style="text-align:center;"><?=$row['activo_fijo']?></td>
-                            <td style="text-align:center;"><?=$row['serial_radio']?></td>
-                            <td style="text-align:center;"><?=$row['estado_radio']?></td>
-                            <td style="text-align:center;"><?=$row['modelo_radio']?></td>
-                            <td style="text-align:center;"><?=$row['observacion']?></td>
-                            <td style="text-align:center;"><?=$ultima_asignacion['cedula']?></td>
-                            <td style="text-align:center;"><?=$ultima_asignacion['fecha_ultima_asignacion']?></td>
-                            <td style="text-align:center;"><?=$ultima_asignacion['ultima_asignacion']?></td>
-                            <td style="text-align:center;"><?=$penultima_asignacion['cedula']?></td>
-                            <td style="text-align:center;"><?=$penultima_asignacion['fecha_penultima_asignacion']?></td>
-                            <td style="text-align:center;"><?=$penultima_asignacion['penultima_asignacion']?></td>
-                            <td style="text-align:center;"><?=$antepenultima_asignacion['cedula']?></td>
-                            <td style="text-align:center;"><?=$antepenultima_asignacion['fecha_antepenultima_asignacion']?></td>
-                            <td style="text-align:center;"><?=$antepenultima_asignacion['antepenultima_asignacion']?></td>
-                            <td style="text-align:center;"><a href="registro_radios.php?idRadio=<?=$row['id_radio']?>">Actualizar</a> - <a href="../procesos/delete.php?category=radio&idRadio=<?=$row['id_radio']?>">Eliminar</a></td>
-                          </tr>
-                         <?php } ?>
                         </table>
                     </div>
                     <br>
@@ -215,7 +191,7 @@ table tr td {
                                 <?php if(isset($_SESSION['user'])){ ?> |
                                 <a href="registro_personal.php">Registro del personal</a> |
                                 <a href="registro_radios.php">Registro de radios</a> |
-                                <a href="consultar_registros.php">Consulta</a> |
+                                <a href="#">Consulta</a> |
                                 <a href="usuarios_registrados.php">Gestión de usuarios</a> |
                                 <a href="../procesos/salir.php">Cerrar sesión</a>
                                 <?php } ?>

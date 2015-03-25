@@ -36,8 +36,10 @@ if(isset($category))
     }
     elseif($category == "user")
     {
-        var_dump($_REQUEST);
-        
+        $delete_user = mysql_query("DELETE FROM persona WHERE cedula = '$cedula' ");
+        $_SESSION['menssage'] = "El usuario ha sido eliminado satisfactoriamente.";
+        header("Location:../modulos/usuarios_registrados.php");
+        die();
     }
 }
 else

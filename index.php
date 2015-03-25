@@ -61,7 +61,7 @@ include "config/conection.php";
                     </li>
                     <!-- <li><a href="#">Registro de radios</a></li> -->
                     <!-- <li><a href="modulos/registro_personal.php">Registro del personal</a></li>  -->
-                    <li><a href="#">Consulta</a></li>
+                    <li><a href="modulos/consultar_registros.php">Consulta</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestión de usuarios <b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -164,7 +164,7 @@ include "config/conection.php";
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 highlight">
-                    <div class="h-caption"><h4><i class="fa fa-search fa-5"></i><a href="#">Consulta</a></h4></div>
+                    <div class="h-caption"><h4><i class="fa fa-search fa-5"></i><a href="modulos/consultar_registros.php">Consulta</a></h4></div>
                     <div class="h-body text-center">
                         <p>Módulo que permite consultar los registros internos de la base de datos del sistema.</p>
                     </div>
@@ -196,7 +196,7 @@ include "config/conection.php";
                                 <?php if(isset($_SESSION['user'])){ ?> |
                                 <a href="modulos/registro_personal.php">Registro del personal</a> |
                                 <a href="modulos/registro_radios.php">Registro de radios</a> |
-                                <a href="#">Consulta</a> |
+                                <a href="modulos/consultar_registros.php">Consulta</a> |
                                 <a href="modulos/usuarios_registrados.php">Gestión de usuarios</a> |
                                 <a href="procesos/salir.php">Cerrar sesión</a>
                                 <?php } ?>

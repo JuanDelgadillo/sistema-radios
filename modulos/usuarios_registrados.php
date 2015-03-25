@@ -57,6 +57,9 @@ table tr td {
         background-color: #EEE;
         margin:0 auto;
         }
+.btn {
+    padding: 10px 10px;
+}
 
   </style>
 </head>
@@ -90,7 +93,7 @@ table tr td {
                             <li><a href="radios_registrados.php">Ver radios registrados</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Consulta</a></li>
+                    <li><a href="consultar_registros.php">Consulta</a></li>
                     <li class="dropdown active">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestión de usuarios <b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -157,11 +160,13 @@ table tr td {
                     </div>
                     <br>
                         <div class="row">
-                            <div class="col-sm-6">
-                                
+                            <div class="col-sm-4 text-right">
                             </div>
-                            <div class="col-sm-6 text-right">
-                                <input class="btn btn-action" id="exportar" type="button" value="Exportar">
+                            <div class="col-sm-4 text-right">
+                            </div>
+                            <div class="col-sm-4 text-right">
+                                <input class="btn btn-action" id="exportarPdf" type="button" value="PDF">
+                                <input class="btn btn-action" id="exportarExcel" type="button" value="EXCEL">
                             </div>
                         </div>
                     </form>
@@ -185,7 +190,7 @@ table tr td {
                                 <?php if(isset($_SESSION['user'])){ ?> |
                                 <a href="registro_personal.php">Registro del personal</a> |
                                 <a href="registro_radios.php">Registro de radios</a> |
-                                <a href="#">Consulta</a> |
+                                <a href="consultar_registros.php">Consulta</a> |
                                 <a href="usuarios_registrados.php">Gestión de usuarios</a> |
                                 <a href="../procesos/salir.php">Cerrar sesión</a>
                                 <?php } ?>
