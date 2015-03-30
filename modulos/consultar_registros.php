@@ -3,7 +3,25 @@
 session_start();
 
 include "../config/conection.php";
+extract($_REQUEST);
+if(isset($consultar))
+{
+    if($category == "Persona")
+    {
+    //var_dump($_REQUEST);
+    $th = "<th style='text-align:center;'>Resultado</th>";
+    $ancho ="1800px;";
+    }
+    elseif($category == "Radio")
+    {
+        
+    }
+    elseif($category == "Asignaciones de radio")
+    {
 
+    }
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -144,7 +162,7 @@ table tr td {
                             </div>
                             <div class="col-sm-4">
                                 <span>Dato a consultar</span>
-                                <input class="form-control" type="text" name="criterio" placeholder="Dato a consultar">
+                                <input class="form-control" type="text" name="criterio" required placeholder="Dato a consultar">
                             </div>
                             <div class="col-sm-4"><br>
                                 <input class="btn btn-action" name="consultar" type="submit" value="Consultar">
@@ -153,9 +171,14 @@ table tr td {
                         </div>
                         <br>
                     <div id="auditoria">
-                        <table style="width:100%; margin-top:0;" >
+                        <table style="<?php if(!isset($consultar)){ echo 'width:100%;'; } else { echo $ancho; } ?> margin-top:0;" >
                           <tr>
+                            <?php if(!isset($consultar)){ ?>
                             <th style="text-align:center;">Resultado</th>
+                            <?php }
+                            else {
+                                echo $th;
+                            } ?>
                           </tr>
                         </table>
                     </div>
