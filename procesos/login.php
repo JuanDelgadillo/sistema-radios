@@ -3,11 +3,9 @@
 session_start();
 
 include_once "../config/conection.php";
-
 if(isset($_POST['ingresar']))
 {
     extract($_REQUEST);
-
     $usuario = mysql_real_escape_string($_POST['user']);
     $contrasena = mysql_real_escape_string($_POST['contrasena']);
     $contrasena = base64_encode($contrasena);

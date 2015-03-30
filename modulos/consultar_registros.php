@@ -97,7 +97,7 @@ table tr td {
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestión de usuarios <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li class="active"><a href="">Ver usuarios registrados</a></li>
+                            <li><a href="">Ver usuarios registrados</a></li>
                         </ul>
                     </li>
                     <!-- <li><a class="btn" href="signin.html">SIGN IN / SIGN UP</a></li> -->
