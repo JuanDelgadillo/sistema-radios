@@ -178,13 +178,13 @@ table tr td {
                             <td style="text-align:center;"><?=$row['estado_radio']?></td>
                             <td style="text-align:center;"><?=$row['modelo_radio']?></td>
                             <td style="text-align:center;"><?=$row['observacion']?></td>
-                            <td style="text-align:center;"><?=$ultima_asignacion['cedula']?></td>
+                            <td style="text-align:center;"><?=$ultima_asignacion['cedula_ultima']?></td>
                             <td style="text-align:center;"><?=$ultima_asignacion['fecha_ultima_asignacion']?></td>
                             <td style="text-align:center;"><?=$ultima_asignacion['ultima_asignacion']?></td>
-                            <td style="text-align:center;"><?=$penultima_asignacion['cedula']?></td>
+                            <td style="text-align:center;"><?=$penultima_asignacion['cedula_penultima']?></td>
                             <td style="text-align:center;"><?=$penultima_asignacion['fecha_penultima_asignacion']?></td>
                             <td style="text-align:center;"><?=$penultima_asignacion['penultima_asignacion']?></td>
-                            <td style="text-align:center;"><?=$antepenultima_asignacion['cedula']?></td>
+                            <td style="text-align:center;"><?=$antepenultima_asignacion['cedula_antepenultima']?></td>
                             <td style="text-align:center;"><?=$antepenultima_asignacion['fecha_antepenultima_asignacion']?></td>
                             <td style="text-align:center;"><?=$antepenultima_asignacion['antepenultima_asignacion']?></td>
                             <td style="text-align:center;"><a href="registro_radios.php?idRadio=<?=$row['id_radio']?>">Actualizar</a> - <a href="../procesos/delete.php?category=radio&idRadio=<?=$row['id_radio']?>">Eliminar</a></td>

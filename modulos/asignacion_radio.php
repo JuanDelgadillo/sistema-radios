@@ -9,7 +9,7 @@ extract($_REQUEST);
     $title = "Asignación de radio";
     if(isset($cedula))
     {
-        $verificar_cedula_asignacion = mysql_query("SELECT * FROM ultima_asignacion_radio WHERE cedula = '$cedula' AND id_radio = '$id_radio' ");
+        $verificar_cedula_asignacion = mysql_query("SELECT * FROM ultima_asignacion_radio WHERE cedula_ultima = '$cedula' AND id_radio = '$id_radio' ");
 
         if(mysql_num_rows($verificar_cedula_asignacion) != 0)
         {

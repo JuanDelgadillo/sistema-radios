@@ -19,6 +19,7 @@ if(isset($consultar))
         <th style="text-align:center;">Promoción</th>
         <th style="text-align:center;">Dirección</th>';
         $consulta = mysql_query("SELECT * FROM persona WHERE CONCAT (cedula, nombre, apellido, sexo, telefono, unidad, jerarquia, promocion, direccion) LIKE '%$criterio%' ");
+        $_SESSION['textConsulta'] = "SELECT * FROM persona WHERE CONCAT (cedula, nombre, apellido, sexo, telefono, unidad, jerarquia, promocion, direccion) LIKE '%$criterio%' ";
         $ancho ="width:1800px;";
     }
     elseif($category == "Radio")
@@ -31,17 +32,60 @@ if(isset($consultar))
         <th style="text-align:center;">Observación</th>
         <th style="text-align:center;">Operaciones</th>';
         $consulta = mysql_query("SELECT * FROM radios WHERE CONCAT (radio_id, activo_fijo, serial_radio, estado_radio, modelo_radio, observacion) LIKE '%$criterio%' ");
+        $_SESSION['textConsulta'] = "SELECT * FROM radios WHERE CONCAT (radio_id, activo_fijo, serial_radio, estado_radio, modelo_radio, observacion) LIKE '%$criterio%' ";
         $ancho ="width:1200px;";
     }
-    elseif($category == "Asignaciones de radio")
+    elseif($category == "Ultima asignación de radio")
     {
-
+        $th = '<th style="text-align:center;">IDentificador (ID)</th>
+        <th style="text-align:center;">Activo fijo</th>
+        <th style="text-align:center;">Serial</th>
+        <th style="text-align:center;">Estado</th>
+        <th style="text-align:center;">Módelo</th>
+        <th style="text-align:center;">Observación</th>
+        <th style="text-align:center;">Cedula - Ultima asignacion</th>
+        <th style="text-align:center;">Fecha - Ultima asignacion</th>
+        <th style="text-align:center;">Ultima asignacion</th>';
+        $consulta = mysql_query("SELECT * FROM radios, ultima_asignacion_radio WHERE CONCAT (radios.radio_id, radios.activo_fijo, radios.serial_radio, radios.estado_radio, radios.modelo_radio, radios.observacion) LIKE '%$criterio%' AND radios.id_radio = ultima_asignacion_radio.id_radio ");
+        $_SESSION['textConsulta'] = "SELECT * FROM radios, ultima_asignacion_radio WHERE CONCAT (radios.radio_id, radios.activo_fijo, radios.serial_radio, radios.estado_radio, radios.modelo_radio, radios.observacion) LIKE '%$criterio%' AND radios.id_radio = ultima_asignacion_radio.id_radio ";
+        $ancho ="width:1400px;";
+    }
+    elseif($category == "Penultima asignación de radio")
+    {
+        $th = '<th style="text-align:center;">IDentificador (ID)</th>
+        <th style="text-align:center;">Activo fijo</th>
+        <th style="text-align:center;">Serial</th>
+        <th style="text-align:center;">Estado</th>
+        <th style="text-align:center;">Módelo</th>
+        <th style="text-align:center;">Observación</th>
+        <th style="text-align:center;">Cedula - Penultima asignacion</th>
+        <th style="text-align:center;">Fecha - Penultima asignacion</th>
+        <th style="text-align:center;">Penultima asignacion</th>';
+        $consulta = mysql_query("SELECT * FROM radios, penultima_asignacion_radio WHERE CONCAT (radios.radio_id, radios.activo_fijo, radios.serial_radio, radios.estado_radio, radios.modelo_radio, radios.observacion) LIKE '%$criterio%' AND radios.id_radio = penultima_asignacion_radio.id_radio ");
+        $_SESSION['textConsulta'] = "SELECT * FROM radios, penultima_asignacion_radio WHERE CONCAT (radios.radio_id, radios.activo_fijo, radios.serial_radio, radios.estado_radio, radios.modelo_radio, radios.observacion) LIKE '%$criterio%' AND radios.id_radio = penultima_asignacion_radio.id_radio ";
+        $ancho ="width:1400px;";
+    }
+    elseif($category == "Antepenultima asignación de radio")
+    {
+        $th = '<th style="text-align:center;">IDentificador (ID)</th>
+        <th style="text-align:center;">Activo fijo</th>
+        <th style="text-align:center;">Serial</th>
+        <th style="text-align:center;">Estado</th>
+        <th style="text-align:center;">Módelo</th>
+        <th style="text-align:center;">Observación</th>
+        <th style="text-align:center;">Cedula - Antepenultima asignacion</th>
+        <th style="text-align:center;">Fecha - Antepenultima asignacion</th>
+        <th style="text-align:center;">Antepenultima asignacion</th>';
+        $consulta = mysql_query("SELECT * FROM radios, antepenultima_asignacion_radio WHERE CONCAT (radios.radio_id, radios.activo_fijo, radios.serial_radio, radios.estado_radio, radios.modelo_radio, radios.observacion) LIKE '%$criterio%' AND radios.id_radio = antepenultima_asignacion_radio.id_radio ");
+        $_SESSION['textConsulta'] = "SELECT * FROM radios, antepenultima_asignacion_radio WHERE CONCAT (radios.radio_id, radios.activo_fijo, radios.serial_radio, radios.estado_radio, radios.modelo_radio, radios.observacion) LIKE '%$criterio%' AND radios.id_radio = antepenultima_asignacion_radio.id_radio ";
+        $ancho ="width:1400px;";
     }
 
 }
 else
 {
     $consulta= "";
+    $_SESSION['textConsulta'] = "";
 }
 ?>
 <!DOCTYPE html>
@@ -101,6 +145,31 @@ table tr td {
 }
 
   </style>
+
+    <script>
+
+    window.addEventListener("load",function(){
+        exportarExcel.addEventListener('click',function(){
+            if(textConsulta.value != "")
+            {
+                var tp;
+                if(tipo_consulta.value == "Persona") tp = 1;
+                if(tipo_consulta.value == "Radio") tp = 2;
+                if(tipo_consulta.value == "Ultima asignación de radio") tp = 3;
+                if(tipo_consulta.value == "Penultima asignación de radio") tp = 4;
+                if(tipo_consulta.value == "Antepenultima asignación de radio") tp = 5;
+
+                window.location="../procesos/exportar.php?category=consulta&tp="+tp;
+            }
+            else
+            {
+                alert("Debes realizar una consulta para poder exportarla a Excel.");
+            }
+        },false);
+    },false);
+
+    </script>
+
 </head>
 
 <body>
@@ -136,7 +205,7 @@ table tr td {
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestión de usuarios <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="">Ver usuarios registrados</a></li>
+                            <li><a href="usuarios_registrados.php">Ver usuarios registrados</a></li>
                         </ul>
                     </li>
                     <!-- <li><a class="btn" href="signin.html">SIGN IN / SIGN UP</a></li> -->
@@ -178,7 +247,9 @@ table tr td {
                                     <option value="">- Seleccione -</option>
                                     <option value="Persona">Persona</option>
                                     <option value="Radio">Radio</option>
-                                    <option value="Asignaciones de radio">Asignaciones de radio</option>
+                                    <option value="Ultima asignación de radio">Ultima asignación de radio</option>
+                                    <option value="Penultima asignación de radio">Penultima asignación de radio</option>
+                                    <option value="Antepenultima asignación de radio">Antepenultima asignación de radio</option>
                                 </select>
                             </div>
                             <div class="col-sm-4">
@@ -202,6 +273,7 @@ table tr td {
                             } ?>
                           </tr>
                             <?php if(isset($consultar)){ while($row = mysql_fetch_assoc($consulta)){ ?>
+                            <tr>
                             <?php if($category == "Persona"){ ?>
                             <td style="text-align:center;"><?=$row['cedula']?></td>
                             <td style="text-align:center;"><?=$row['nombre']?></td>
@@ -222,10 +294,41 @@ table tr td {
                             <td style="text-align:center;"><?=$row['observacion']?></td>
                             <td style="text-align:center;"><a href="asignacion_radio.php?id=<?=$row['id_radio']?>">Asignar</a></td>
                             <?php } ?>
-                            <?php if($category == "Asignaciones de radio"){ ?>
-
+                            <?php if($category == "Ultima asignación de radio"){ ?>
+                            <td style="text-align:center;"><?=$row['radio_id']?></td>
+                            <td style="text-align:center;"><?=$row['activo_fijo']?></td>
+                            <td style="text-align:center;"><?=$row['serial_radio']?></td>
+                            <td style="text-align:center;"><?=$row['estado_radio']?></td>
+                            <td style="text-align:center;"><?=$row['modelo_radio']?></td>
+                            <td style="text-align:center;"><?=$row['observacion']?></td>
+                            <td style="text-align:center;"><?=$row['cedula_ultima']?></td>
+                            <td style="text-align:center;"><?=$row['fecha_ultima_asignacion']?></td>
+                            <td style="text-align:center;"><?=$row['ultima_asignacion']?></td>
+                            <?php } ?>
+                            <?php if($category == "Penultima asignación de radio"){ ?>
+                            <td style="text-align:center;"><?=$row['radio_id']?></td>
+                            <td style="text-align:center;"><?=$row['activo_fijo']?></td>
+                            <td style="text-align:center;"><?=$row['serial_radio']?></td>
+                            <td style="text-align:center;"><?=$row['estado_radio']?></td>
+                            <td style="text-align:center;"><?=$row['modelo_radio']?></td>
+                            <td style="text-align:center;"><?=$row['observacion']?></td>
+                            <td style="text-align:center;"><?=$row['cedula_penultima']?></td>
+                            <td style="text-align:center;"><?=$row['fecha_penultima_asignacion']?></td>
+                            <td style="text-align:center;"><?=$row['penultima_asignacion']?></td>
+                            <?php } ?>
+                            <?php if($category == "Antepenultima asignación de radio"){ ?>
+                            <td style="text-align:center;"><?=$row['radio_id']?></td>
+                            <td style="text-align:center;"><?=$row['activo_fijo']?></td>
+                            <td style="text-align:center;"><?=$row['serial_radio']?></td>
+                            <td style="text-align:center;"><?=$row['estado_radio']?></td>
+                            <td style="text-align:center;"><?=$row['modelo_radio']?></td>
+                            <td style="text-align:center;"><?=$row['observacion']?></td>
+                            <td style="text-align:center;"><?=$row['cedula_antepenultima']?></td>
+                            <td style="text-align:center;"><?=$row['fecha_antepenultima_asignacion']?></td>
+                            <td style="text-align:center;"><?=$row['antepenultima_asignacion']?></td>
                             <?php } ?>
 
+                            </tr>
                             <?php } } //End while - End if ?>
 
                         </table>
@@ -238,6 +341,8 @@ table tr td {
                             </div>
                             <div class="col-sm-4 text-right">
                                 <input class="btn btn-action" id="exportarPdf" type="button" value="PDF">
+                                <input type="hidden" name="tipo_consulta" id="tipo_consulta" value="<?=$category?>">
+                                <input type="hidden" id="textConsulta" name="textConsulta" value="<?=$_SESSION['textConsulta']?>">
                                 <input class="btn btn-action" id="exportarExcel" type="button" value="EXCEL">
                             </div>
                         </div>
