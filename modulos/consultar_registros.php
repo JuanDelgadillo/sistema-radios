@@ -8,19 +8,40 @@ if(isset($consultar))
 {
     if($category == "Persona")
     {
-    //var_dump($_REQUEST);
-    $th = "<th style='text-align:center;'>Resultado</th>";
-    $ancho ="1800px;";
+        //var_dump($_REQUEST);
+        $th = '<th style="text-align:center;">Cédula</th>
+        <th style="text-align:center;">Nombre</th>
+        <th style="text-align:center;">Apellido</th>
+        <th style="text-align:center;">Sexo</th>
+        <th style="text-align:center;">Teléfono</th>
+        <th style="text-align:center;">Unidad</th>
+        <th style="text-align:center;">Jerarquía</th>
+        <th style="text-align:center;">Promoción</th>
+        <th style="text-align:center;">Dirección</th>';
+        $consulta = mysql_query("SELECT * FROM persona WHERE CONCAT (cedula, nombre, apellido, sexo, telefono, unidad, jerarquia, promocion, direccion) LIKE '%$criterio%' ");
+        $ancho ="width:1800px;";
     }
     elseif($category == "Radio")
     {
-        
+        $th = '<th style="text-align:center;">IDentificador (ID)</th>
+        <th style="text-align:center;">Activo fijo</th>
+        <th style="text-align:center;">Serial</th>
+        <th style="text-align:center;">Estado</th>
+        <th style="text-align:center;">Módelo</th>
+        <th style="text-align:center;">Observación</th>
+        <th style="text-align:center;">Operaciones</th>';
+        $consulta = mysql_query("SELECT * FROM radios WHERE CONCAT (radio_id, activo_fijo, serial_radio, estado_radio, modelo_radio, observacion) LIKE '%$criterio%' ");
+        $ancho ="width:1200px;";
     }
     elseif($category == "Asignaciones de radio")
     {
 
     }
 
+}
+else
+{
+    $consulta= "";
 }
 ?>
 <!DOCTYPE html>
@@ -180,6 +201,33 @@ table tr td {
                                 echo $th;
                             } ?>
                           </tr>
+                            <?php if(isset($consultar)){ while($row = mysql_fetch_assoc($consulta)){ ?>
+                            <?php if($category == "Persona"){ ?>
+                            <td style="text-align:center;"><?=$row['cedula']?></td>
+                            <td style="text-align:center;"><?=$row['nombre']?></td>
+                            <td style="text-align:center;"><?=$row['apellido']?></td>
+                            <td style="text-align:center;"><?=$row['sexo']?></td>
+                            <td style="text-align:center;"><?=$row['telefono']?></td>
+                            <td style="text-align:center;"><?=$row['unidad']?></td>
+                            <td style="text-align:center;"><?=$row['jerarquia']?></td>
+                            <td style="text-align:center;"><?=$row['promocion']?></td>
+                            <td style="text-align:center;"><?=$row['direccion']?></td>
+                            <?php } ?>
+                            <?php if($category == "Radio"){ ?>
+                            <td style="text-align:center;"><?=$row['radio_id']?></td>
+                            <td style="text-align:center;"><?=$row['activo_fijo']?></td>
+                            <td style="text-align:center;"><?=$row['serial_radio']?></td>
+                            <td style="text-align:center;"><?=$row['estado_radio']?></td>
+                            <td style="text-align:center;"><?=$row['modelo_radio']?></td>
+                            <td style="text-align:center;"><?=$row['observacion']?></td>
+                            <td style="text-align:center;"><a href="asignacion_radio.php?id=<?=$row['id_radio']?>">Asignar</a></td>
+                            <?php } ?>
+                            <?php if($category == "Asignaciones de radio"){ ?>
+
+                            <?php } ?>
+
+                            <?php } } //End while - End if ?>
+
                         </table>
                     </div>
                     <br>
