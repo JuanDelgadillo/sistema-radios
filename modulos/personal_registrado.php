@@ -70,6 +70,9 @@ table tr td {
     exportarExcel.addEventListener('click',function(){
         window.location="../procesos/exportar.php?category=personas";
     },false);
+    exportarPdf.addEventListener('click',function(){
+        window.open("personal_pdf.php?category=personas");
+    },false);
   },false);
 
   </script>

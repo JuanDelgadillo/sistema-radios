@@ -69,6 +69,9 @@ table tr td {
     exportarExcel.addEventListener('click',function(){
         window.location="../procesos/exportar.php?category=radios";
     },false);
+    exportarPdf.addEventListener('click',function(){
+        window.open("radios_pdf.php?category=radios");
+    },false);
   },false);
 
   </script>

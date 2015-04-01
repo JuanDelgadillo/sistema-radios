@@ -68,6 +68,9 @@ table tr td {
     exportarExcel.addEventListener('click',function(){
         window.location="../procesos/exportar.php?category=users";
     },false);
+    exportarPdf.addEventListener('click',function(){
+        window.location="usuarios_pdf.php?category=users";
+    },false);
   },false);
 
   </script>
