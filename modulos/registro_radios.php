@@ -148,6 +148,7 @@ else
                                 <select name="estado" class="form-control" required>
                                     <option value="">- Seleccione -</option>
                                     <option <?php if($estado_radio == "APAGADO") echo "SELECTED"; ?> value="APAGADO">APAGADO</option>
+                                    <option <?php if($estado_radio == "AVERIADO") echo "SELECTED"; ?> value="AVERIADO">AVERIADO</option>
                                     <option <?php if($estado_radio == "EXTRAVIADO") echo "SELECTED"; ?> value="EXTRAVIADO">EXTRAVIADO</option>
                                     <option <?php if($estado_radio == "OPERATIVO") echo "SELECTED"; ?> value="OPERATIVO">OPERATIVO</option>
                                     <option <?php if($estado_radio == "PARA DESINCORPORAR") echo "SELECTED"; ?> value="PARA DESINCORPORAR">PARA DESINCORPORAR</option>

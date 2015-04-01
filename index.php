@@ -176,6 +176,21 @@ include "config/conection.php";
                     </div>
                 </div>
             </div> <!-- /row  -->
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6 highlight">
+                    <div class="h-caption"><h4><i class="fa fa-print"></i><a href="modulos/reporte_general.php" target="_blank">Reporte general</a></h4></div>
+                    <div class="h-body text-center">
+                        <p>Reporte general de la información actual del sistema.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 highlight">
+                    <div class="h-caption"><h4><i class="fa fa-bar-chart-o"></i><a href="modulos/consultar_registros.php">Estadísticas</a></h4></div>
+                    <div class="h-body text-center">
+                        <p>Módulo que permite visualizar las estadísticas <br> de los registros internos de la base de datos del sistema.</p>
+                    </div>
+                </div>
+            </div> <!-- /row  -->
         
         </div>
     </div>
