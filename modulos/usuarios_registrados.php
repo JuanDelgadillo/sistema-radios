@@ -69,7 +69,7 @@ table tr td {
         window.location="../procesos/exportar.php?category=users";
     },false);
     exportarPdf.addEventListener('click',function(){
-        window.location="usuarios_pdf.php?category=users";
+        window.open("usuarios_pdf.php?category=users");
     },false);
   },false);
 

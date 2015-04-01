@@ -166,6 +166,23 @@ table tr td {
                 alert("Debes realizar una consulta para poder exportarla a Excel.");
             }
         },false);
+        exportarPdf.addEventListener('click',function(){
+            if(textConsulta.value != "")
+            {
+                var tp;
+                if(tipo_consulta.value == "Persona") tp = 1;
+                if(tipo_consulta.value == "Radio") tp = 2;
+                if(tipo_consulta.value == "Ultima asignación de radio") tp = 3;
+                if(tipo_consulta.value == "Penultima asignación de radio") tp = 4;
+                if(tipo_consulta.value == "Antepenultima asignación de radio") tp = 5;
+
+                window.open("consulta_pdf.php?category=consulta&tp="+tp);
+            }
+            else
+            {
+                alert("Debes realizar una consulta para poder exportarla a Pdf.");
+            }
+        },false);
     },false);
 
     </script>

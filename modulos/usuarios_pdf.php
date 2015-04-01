@@ -25,7 +25,7 @@ include "../config/conection.php";
   <script>
 
   window.addEventListener("load",function(){
-    //window.print();
+    window.print();
   },false);
 
   </script>
@@ -33,27 +33,24 @@ include "../config/conection.php";
 <body>
   <h1>Usuarios registrados</h1>
   <?php 
-  $radio = mysql_query("SELECT * FROM radios ");
+  $user = mysql_query("SELECT * FROM users ");
+  $privileges = ['1'=>'Administrador','2'=>'Invitado'];
       ?>
     <table border="1" width="900px">
           <tr>
-            <th style="text-align:center;background-color:gray;">IDentificador (ID)</th>
-            <th style="text-align:center;background-color:gray;">Activo fijo</th>
-            <th style="text-align:center;background-color:gray;">Serial</th>
-            <th style="text-align:center;background-color:gray;">Estado</th>
-            <th style="text-align:center;background-color:gray;">M&oacute;delo</th>
-            <th style="text-align:center;background-color:gray;">Observaci&oacute;n</th>
-              </tr>
-      <?php while($row = mysql_fetch_assoc($radio))
+            <th style="text-align:center;background-color:gray;">C&eacute;dula</th>
+            <th style="text-align:center;background-color:gray;">Nombre de usuario</th>
+            <th style="text-align:center;background-color:gray;">Contrase&ntilde;a</th>
+            <th style="text-align:center;background-color:gray;">Privilegio</th>
+          </tr>
+      <?php while($row = mysql_fetch_assoc($user))
       {
         ?>
               <tr>
-                <td style="text-align:center;"><?=$row['radio_id']?></td>
-                <td style="text-align:center;"><?=$row['activo_fijo']?></td>
-                <td style="text-align:center;"><?=$row['serial_radio']?></td>
-                <td style="text-align:center;"><?=$row['estado_radio']?></td>
-                <td style="text-align:center;"><?=$row['modelo_radio']?></td>
-                <td style="text-align:center;"><?=$row['observacion']?></td>
+                <td style="text-align:center;"><?=$row['cedula']?></td>
+                <td style="text-align:center;"><?=$row['user']?></td>
+                <td style="text-align:center;"><?=$row['password']?></td>
+                <td style="text-align:center;"><?=$privileges[$row['rol']]?></td>
               </tr>
         <?php
       } ?>
